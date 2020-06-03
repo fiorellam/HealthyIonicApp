@@ -22,4 +22,9 @@
     </ion-toolbar>
   </ion-header> -->
 
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="siguientes($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

@@ -14,10 +14,21 @@ export class Tab3Page {
   constructor(private recipeService: RecipesService) {}
 
   ngOnInit(){
+    this.siguientes();
+  }
+  
+  siguientes(event?){
     this.recipeService.getRecipesServer()
       .subscribe( resp => {
         console.log(resp);
         this.recipesSaved.push(...resp.recipes);
+
+        if(event){
+          event.target.complete();
+          if(resp.recipes.length === 0 ){
+            event.target.disabled = true;
+          }
+        }
       });
   }
 
