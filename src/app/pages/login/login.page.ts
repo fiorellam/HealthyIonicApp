@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { IUsuario } from 'src/app/interfaces/IUsuario';
 
@@ -17,7 +17,8 @@ export class LoginPage implements OnInit {
   user = {} as IUsuario;
 
   constructor(private formBuilder: FormBuilder,
-              private usuarioService: UsuarioService) { 
+              private usuarioService: UsuarioService,
+              private navCtrl: NavController) { 
 
     this.createLoginForm();
     this.createSignupForm();
@@ -48,12 +49,17 @@ export class LoginPage implements OnInit {
     });
   }
 
-  login(){
+  async login(){
     if(this.slideLoginForm.invalid){ return; }
+    
 
-    this.user = this.slideLoginForm.value;
+    const valido = await this.usuarioService.login(this.slideLoginForm.value)
 
-    this.usuarioService.login(this.user)
+    if(valido){
+      this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true, animationDirection:'back'})
+    } else{
+
+    }
     console.log(this.slideLoginForm.valid);
     console.log(this.slideLoginForm.value);
 
