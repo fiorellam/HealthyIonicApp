@@ -1,9 +1,85 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
+<ion-content class="align-content">
+  <img src="/assets/img/wayHealthy2.png" width="70%" height="40%" alt="">
+  <ion-slides #loginSignupSlider>
+
+    <ion-slide>
+        <form [formGroup]="slideLoginForm" (ngSubmit)="login()" >
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none" >
+                  <ion-label position="floating"> Email</ion-label>
+                  <ion-input formControlName="email"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input formControlName="password"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="margin-top">
+              <ion-col>
+                <ion-button type="submit" color="greenblue" shape="round">
+                Login
+              </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-label class="underline-text" color="greenblue"
+                            (click)="goToSignup()">
+                            Need an account?</ion-label>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </form>
+    </ion-slide>
+
+    <ion-slide>     
+        <form [formGroup]="slideSignupForm" (ngSubmit)="signup()">
+          <ion-grid>
+
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="floating">Name</ion-label>
+                  <ion-input formControlName="name"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label position="floating"> Email</ion-label>
+                  <ion-input formControlName="email"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input formControlName="password"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="margin-top">
+              <ion-col>
+                <ion-button shape="round" color="greenblue"> 
+                  Create User 
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-label class="underline-text" color="greenblue"
+                            (click)="goToLogin()">
+                            Already have an account?</ion-label>
+              </ion-col>
+            </ion-row>
+
+          </ion-grid>
+        </form>
+    </ion-slide>
+
+  </ion-slides>
 </ion-content>
