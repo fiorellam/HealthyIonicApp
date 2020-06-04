@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { IonSlides } from '@ionic/angular';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { IUsuario } from 'src/app/interfaces/IUsuario';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,10 @@ export class LoginPage implements OnInit {
   @ViewChild('loginSignupSlider') loginSignupSlider: IonSlides;
   slideLoginForm: FormGroup;
   slideSignupForm: FormGroup;
+  user = {} as IUsuario;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,
+              private usuarioService: UsuarioService) { 
 
     this.createLoginForm();
     this.createSignupForm();
@@ -21,29 +25,37 @@ export class LoginPage implements OnInit {
 
   ionViewDidEnter(){
 
-    // this.loginSignupSlider.lockSwipes(true);
+    this.loginSignupSlider.lockSwipes(true);
   }
   ngOnInit() {
   }
 
   createLoginForm(){
     this.slideLoginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,20}/), Validators.minLength(8), Validators.maxLength(19)] ]
+      email: ['fiorellaroma@hotmail.com', [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i)]],
+      // password: ['123456', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,20}/), Validators.minLength(5), Validators.maxLength(19)] ]
+      password: ['123456', [Validators.required, Validators.minLength(5), Validators.maxLength(19)] ]
     });
   }
 
   createSignupForm(){
     this.slideSignupForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,20}/), Validators.minLength(8), Validators.maxLength(19)] ]
+      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i)]],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(19)] ]
+      // password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,20}/), Validators.minLength(5), Validators.maxLength(19)] ]
 
     });
   }
 
   login(){
-    console.log( this.slideLoginForm.value) ;
+    if(this.slideLoginForm.invalid){ return; }
+
+    this.user = this.slideLoginForm.value;
+
+    this.usuarioService.login(this.user)
+    console.log(this.slideLoginForm.valid);
+    console.log(this.slideLoginForm.value);
 
   }
 

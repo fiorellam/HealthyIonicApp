@@ -1,5 +1,7 @@
 {
   "name": "HealthyIonicM",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
