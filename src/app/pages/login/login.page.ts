@@ -43,9 +43,9 @@ export class LoginPage implements OnInit {
 
   createSignupForm(){
     this.slideSignupForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i)]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(19)] ]
+      name: ['Fiorella', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(2)]],
+      email: ['test', [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i)]],
+      password: ['123456', [Validators.required, Validators.minLength(5), Validators.maxLength(19)] ]
       // password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,20}/), Validators.minLength(5), Validators.maxLength(19)] ]
 
     });
@@ -65,7 +65,15 @@ export class LoginPage implements OnInit {
 
   }
 
-  signup(){
+  async signup(){
+    if(this.slideSignupForm.invalid){ return; }
+    const valido = await this.usuarioService.register(this.slideSignupForm.value);
+
+    if(valido){
+      this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true, animationDirection: 'back'});
+    } else {
+      this.uiservice.alertaInformacion('Ese correo electrónico ya existe');
+    }
     console.log( this.slideSignupForm.value) ;
   }
 
