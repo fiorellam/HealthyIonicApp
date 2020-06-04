@@ -43,11 +43,12 @@ export class LoginPage implements OnInit {
   }
 
   login(){
+    console.log( this.slideLoginForm.value) ;
 
   }
 
   signup(){
-
+    console.log( this.slideSignupForm.value) ;
   }
 
   goToSignup(){
