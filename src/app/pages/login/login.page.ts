@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { IUsuario } from 'src/app/interfaces/IUsuario';
+import { UIServiceService } from 'src/app/services/uiservice.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private usuarioService: UsuarioService,
-              private navCtrl: NavController) { 
+              private navCtrl: NavController,
+              private uiservice: UIServiceService) { 
 
     this.createLoginForm();
     this.createSignupForm();
@@ -58,10 +60,8 @@ export class LoginPage implements OnInit {
     if(valido){
       this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true, animationDirection:'back'})
     } else{
-
+      this.uiservice.alertaInformacion('Usuario y contraseña no son correctos.');
     }
-    console.log(this.slideLoginForm.valid);
-    console.log(this.slideLoginForm.value);
 
   }
 
