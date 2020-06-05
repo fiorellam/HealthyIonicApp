@@ -14,14 +14,14 @@ export class Tab2Page {
 
   constructor(private recipesService: RecipesService) {
     this.cargando = true;
-    this.recipesService.getRecipesFoodNutrition().subscribe(
-      resp => {
-        this.recipes.push(...resp);
-        console.log('this recipes', this.recipes);
-        console.log(resp);
-        this.cargando = false;
-      }
-    );
+    // this.recipesService.getRecipesFoodNutrition().subscribe(
+    //   resp => {
+    //     this.recipes.push(...resp);
+    //     console.log('this recipes', this.recipes);
+    //     console.log(resp);
+    //     this.cargando = false;
+    //   }
+    // );
   }
 
 }
