@@ -26,4 +26,16 @@ export class UIServiceService {
     });
     toast.present();
   }
+
+  async alertaPesoIdeal( woman: string, man: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Ideal Weight',
+      message: `For woman: ${woman}kgs, for man: ${man}kgs`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  
 }

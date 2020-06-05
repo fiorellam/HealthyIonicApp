@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user-recipes/user-recipes.module').then( m => m.UserRecipesPageModule)
   },
   // {
+  //   path: 'tab4',
+  //   loadChildren: () => import('./pages/tab4/tab4.module').then( m => m.Tab4PageModule)
+  // },
+  // {
   //   path: 'new',
   //   loadChildren: () => import('./pages/new/new.module').then( m => m.NewPageModule)
   // }

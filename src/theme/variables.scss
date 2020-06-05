@@ -271,3 +271,13 @@ ion-card{
 ion-content{
     --background: url("/assets/img/newBackgroundCut2.png")  0 0/100% 100% no-repeat;
 }
+
+ion-list{
+  // padding: 70px 60px;
+  background: transparent;
+}
+ion-item {
+  --background: rgba(0,0,0,0);
+  --border-color: rgba(0,0,0,0);
+  padding: 5px 0px
+}
