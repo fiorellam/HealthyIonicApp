@@ -2,8 +2,8 @@
 
 
 export interface IUsuario {
-  _id: string;
-  name: string;
+  _id?: string;
+  name?: string;
   password?: string;
-  email: string;
+  email?: string;
 }
