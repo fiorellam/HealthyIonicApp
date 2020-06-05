@@ -25,5 +25,6 @@ export class MyrecipesPage implements OnInit {
 
     );
   }
+  
 
 }
