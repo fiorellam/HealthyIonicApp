@@ -13,7 +13,7 @@ const URL = environment.url
 export class UsuarioService {
 
   token: string = null;
-  user: IUsuario = {};
+  private user: IUsuario = {};
 
   constructor(private http: HttpClient,
               private storage: Storage, 
@@ -57,6 +57,12 @@ export class UsuarioService {
     })
   }
 
+  obtenerUsuario(){
+    if(!this.user._id){
+      this.validaToken();
+    }
+    return {... this.user}
+  }
   async guardarToken(token: string){
     this.token = token;
     await this.storage.set('token', token);
@@ -90,5 +96,24 @@ export class UsuarioService {
           }
         })
     });
+  }
+
+  actualizarUsuario(user: IUsuario){
+    const headers = new HttpHeaders({
+      "x-token" : this.token
+    });
+
+    return new Promise(resolve =>{
+      this.http.put(`${URL}/user/update`, user, {headers})
+        .subscribe(resp => {
+          console.log(resp);
+          if(resp['ok']){
+            this.guardarToken(resp['token']);
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        })
+    })
   }
 }

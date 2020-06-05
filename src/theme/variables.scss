@@ -247,4 +247,18 @@
   --ion-color-contrast-rgb: var(--ion-color-greenblue-contrast-rgb) !important;
   --ion-color-shade: var(--ion-color-greenblue-shade) !important;
   --ion-color-tint: var(--ion-color-greenblue-tint) !important;
-  }
+}
+
+.align-content{
+  text-align: center;
+}
+
+.margin-top{
+  margin-top: 30px;
+}
+.bold-text{
+  font-weight: bold;
+}
+.underline-text{
+  text-decoration: underline;
+}
