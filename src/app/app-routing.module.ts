@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'main/tabs/tab2'
   },
   {
     path: 'profile',
@@ -21,7 +21,11 @@ const routes: Routes = [
   {
     path: 'user-recipes',
     loadChildren: () => import('./pages/user-recipes/user-recipes.module').then( m => m.UserRecipesPageModule)
-  }
+  },
+  // {
+  //   path: 'new',
+  //   loadChildren: () => import('./pages/new/new.module').then( m => m.NewPageModule)
+  // }
 ];
 @NgModule({
   imports: [

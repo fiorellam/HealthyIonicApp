@@ -1,0 +1,18 @@
+<ion-card *ngFor="let singleNew of newsList; let i = index" 
+          (click)="goToSpecificNew(i)">
+  <img [src]="singleNew.urlToImage" />
+  <ion-card-header>
+    <ion-card-subtitle>Autor {{singleNew.author}}</ion-card-subtitle>
+    <ion-card-title>{{singleNew.title}}</ion-card-title>
+  </ion-card-header>
+  <!-- <ion-card-content> {{singleNew.description}} </ion-card-content> -->
+</ion-card>
+
+<ion-card (click)="goToSpecificNew(1)">
+  <img src="/assets/img/wayHealthy.png" />
+  <ion-card-header>
+    <ion-card-subtitle>Autor</ion-card-subtitle>
+    <ion-card-title>Titulo</ion-card-title>
+  </ion-card-header>
+  <!-- <ion-card-content> {{singleNew.description}} </ion-card-content> -->
+</ion-card>

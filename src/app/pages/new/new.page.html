@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img [src]="new.urlToImage" />
+    <ion-card-header>
+      <ion-card-title>{{new.title}}</ion-card-title>
+      <ion-card-subtitle>Autor {{new.author}}</ion-card-subtitle>
+      <ion-card-subtitle> {{new.publishedAt | date}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{new.content}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
