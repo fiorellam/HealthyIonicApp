@@ -9,7 +9,6 @@ export interface IRecipe {
     title?: string;
     readyInMinutes?: string;
     image?: string;
-    summary?:string;
     instructions?: string;
 
     usuario?: IUsuario;

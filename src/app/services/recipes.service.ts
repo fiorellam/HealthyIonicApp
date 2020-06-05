@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { IResponseRecipes } from '../interfaces/IResponseRecipes';
 import { map } from 'rxjs/operators';
 import { IRecipe } from '../interfaces/IRecipe';
+import { UsuarioService } from './usuario.service';
 
 const URL = environment.url;
 @Injectable({
@@ -14,7 +15,8 @@ export class RecipesService {
   paginaRecipes = 0;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private usuarioService: UsuarioService) { }
 
   getRecipesServer(){
     this.paginaRecipes ++;
@@ -45,7 +47,6 @@ export class RecipesService {
             title: recipe.title,
             readyInMinutes: recipe.readyInMinutes,
             image: recipe.image,
-            summary: recipe.summary,
             instructions: recipe.instructions
           }))
         )
@@ -60,5 +61,16 @@ export class RecipesService {
     });
     return this.http.get<IRecipe>(url, {headers});
       
+  }
+
+  saveRecipe(recipe: IRecipe){
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+
+    this.http.post(`${URL}/recipes`, recipe, {headers}).
+      subscribe( resp => {
+        console.log(resp);
+      });
   }
 }

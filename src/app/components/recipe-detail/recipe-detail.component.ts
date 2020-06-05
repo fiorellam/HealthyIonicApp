@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IRecipe } from 'src/app/interfaces/IRecipe';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { ModalController } from '@ionic/angular';
+import { UIServiceService } from 'src/app/services/uiservice.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,7 +16,8 @@ export class RecipeDetailComponent implements OnInit {
   cargando = true;
 
   constructor(private recipesService: RecipesService,
-              private modalCtrl: ModalController) { }
+              private modalCtrl: ModalController,
+              private uiService: UIServiceService) { }
 
   ngOnInit() {
     this.cargando=true;
@@ -34,6 +36,10 @@ export class RecipeDetailComponent implements OnInit {
 
   saveRecipe(recipeDetail){
     console.log(recipeDetail);
+
+    this.recipesService.saveRecipe(recipeDetail);
+    this.uiService.presentToast('Recipe has been saved');
+
   }
 
 
