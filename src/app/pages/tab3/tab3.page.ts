@@ -53,4 +53,8 @@ export class Tab3Page implements OnInit {
     this.navCtrl.navigateRoot('profile')
   }
 
+  logout(){
+    this.usuarioService.logout();
+  }
+
 }
