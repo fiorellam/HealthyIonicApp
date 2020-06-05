@@ -27,30 +27,14 @@ export class Tab3Page implements OnInit {
 
   ngOnInit(){
     
-    this.siguientes();
-  }
-
-  
-
- 
-  
-  siguientes(event?){
-    this.recipeService.getRecipesServer()
-      .subscribe( resp => {
-        console.log(resp);
-        this.recipesSaved.push(...resp.recipes);
-
-        if(event){
-          event.target.complete();
-          if(resp.recipes.length === 0 ){
-            event.target.disabled = true;
-          }
-        }
-      });
   }
 
   goToEditProfile(){
     this.navCtrl.navigateRoot('profile')
+  }
+
+  goToMyRecipes(){
+    this.navCtrl.navigateRoot('myrecipes')
   }
 
   logout(){

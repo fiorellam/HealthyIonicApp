@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { IResponseRecipes } from '../interfaces/IResponseRecipes';
 import { map } from 'rxjs/operators';
 import { IRecipe } from '../interfaces/IRecipe';
+import { IUsuario } from '../interfaces/IUsuario';
 import { UsuarioService } from './usuario.service';
 
 const URL = environment.url;
@@ -12,15 +13,16 @@ const URL = environment.url;
 })
 export class RecipesService {
 
-  paginaRecipes = 0;
+  user: IUsuario;
 
 
   constructor(private http: HttpClient,
               private usuarioService: UsuarioService) { }
 
   getRecipesServer(){
-    this.paginaRecipes ++;
-    return this.http.get<IResponseRecipes>(`${URL}/recipes/?pagina=${this.paginaRecipes}`)
+    this.user = this.usuarioService.obtenerUsuario();
+    console.log(this.user)
+    return this.http.get<IResponseRecipes>(`${URL}/recipes/?uid=${this.user._id}`)
   }
 
   getQuery(query:string){

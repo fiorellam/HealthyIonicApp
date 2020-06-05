@@ -14,6 +14,7 @@ export class Tab2Page {
 
   constructor(private recipesService: RecipesService) {
     this.cargando = true;
+    // this.recipesService.getRecipesServer();
     this.recipesService.getRecipesFoodNutrition().subscribe(
       resp => {
         this.recipes.push(...resp);

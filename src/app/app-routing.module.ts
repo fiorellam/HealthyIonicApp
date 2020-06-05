@@ -19,8 +19,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'user-recipes',
-    loadChildren: () => import('./pages/user-recipes/user-recipes.module').then( m => m.UserRecipesPageModule)
+    path: 'myrecipes',
+    loadChildren: () => import('./pages/myrecipes/myrecipes.module').then( m => m.MyrecipesPageModule)
   },
   // {
   //   path: 'tab4',
