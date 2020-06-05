@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RecipesService } from 'src/app/services/recipes.service';
+import { IRecipe } from 'src/app/interfaces/IRecipe';
 
 @Component({
   selector: 'app-tab2',
@@ -8,8 +9,19 @@ import { RecipesService } from 'src/app/services/recipes.service';
 })
 export class Tab2Page {
 
+  recipes: IRecipe[] = [];
+  cargando = true;
+
   constructor(private recipesService: RecipesService) {
-    this.recipesService.getRecipesFoodNutrition();
+    this.cargando = true;
+    this.recipesService.getRecipesFoodNutrition().subscribe(
+      resp => {
+        this.recipes.push(...resp);
+        console.log('this recipes', this.recipes);
+        console.log(resp);
+        this.cargando = false;
+      }
+    );
   }
 
 }

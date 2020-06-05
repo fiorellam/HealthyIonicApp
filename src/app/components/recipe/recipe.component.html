@@ -1,8 +1,11 @@
-<div class="recipe">
-  <ion-item lines="none">
-    <ion-label>
-      <h3>{{recipe.title}}</h3>
-      <h5>{{recipe._id}}</h5>
-    </ion-label>
-  </ion-item>
-</div>
+<ion-card>
+  <img [src]="recipe.image" />
+  <ion-card-header>
+    <!-- <ion-card-subtitle> {{singleNew.author}}</ion-card-subtitle> -->
+    <ion-card-title>{{recipe.title}}</ion-card-title>
+    <ion-item style="padding:0">
+      <ion-badge *ngIf="recipe.vegetarian" color="primary" style="color: white">Vegetarian</ion-badge>
+    </ion-item>
+  </ion-card-header>
+  <!-- <ion-card-content> {{singleNew.description}} </ion-card-content> -->
+</ion-card>

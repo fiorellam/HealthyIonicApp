@@ -13,4 +13,16 @@
     </ion-toolbar>
   </ion-header>
 
+  <app-recipes *ngIf="!cargando" [recipes]="recipes"></app-recipes>
+
+  <div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading"> Cargando </h4>
+    <p>
+      <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p clas="mb-0">
+      Espere por favor
+    </p>
+  </div>
+
 </ion-content>

@@ -1,2 +1,4 @@
-<app-recipe *ngFor="let recipe of recipes"
-            [recipe]="recipe"></app-recipe>
+<app-recipe *ngFor="let recipe of recipes; let i = index"
+            [recipe]="recipe" (click)="recipeDetail(recipe.id)"></app-recipe>
+
+            

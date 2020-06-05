@@ -1,0 +1,43 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="end" (click)="goBack()">
+      <ion-icon name="close"></ion-icon>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!cargando">
+    <img [src]="recipeDetail.image" />
+    <ion-card-header>
+      <ion-card-title>{{recipeDetail.title}}</ion-card-title>
+        <ion-item >
+          <button slot="end" (click)="saveRecipe(recipeDetail)">
+            <ion-icon name="star"></ion-icon>
+          </button>
+        </ion-item>
+      <ion-card-subtitle>Ready in {{recipeDetail.readyInMinutes}} minutes</ion-card-subtitle>
+      <ion-item style="padding:0">
+        <ion-badge *ngIf="recipeDetail.vegetarian" color="primary" style="color: white">Vegetarian</ion-badge>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content> {{recipeDetail.instructions}} </ion-card-content>
+    <ion-card-subtitle>Ingredients</ion-card-subtitle>
+    <ion-label *ngFor="let ingredient of recipeDetail.extendedIngredients">
+        {{ingredient.name}}
+    </ion-label>
+  </ion-card>
+
+  <div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading"> Cargando </h4>
+    <p>
+      <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p clas="mb-0">
+      Espere por favor
+    </p>
+  </div>
+  
+
+</ion-content>
