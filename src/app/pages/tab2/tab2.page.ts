@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(private recipesService: RecipesService) {
+    this.recipesService.getRecipesFoodNutrition();
+  }
 
 }
