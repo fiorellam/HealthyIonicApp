@@ -12,6 +12,7 @@ export class Tab1Page implements OnInit{
 
   recipesSaved: IRecipe[] = [];
   news: INew[] = [];
+  
 
   constructor(private recipeService: RecipesService) {}
 
